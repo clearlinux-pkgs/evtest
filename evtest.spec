@@ -4,10 +4,10 @@
 #
 Name     : evtest
 Version  : 1.34
-Release  : 2
+Release  : 3
 URL      : https://gitlab.freedesktop.org/libevdev/evtest/-/archive/evtest-1.34/evtest-evtest-1.34.tar.gz
 Source0  : https://gitlab.freedesktop.org/libevdev/evtest/-/archive/evtest-1.34/evtest-evtest-1.34.tar.gz
-Summary  : Input device event monitor and query tool
+Summary  : No detailed summary available
 Group    : Development/Tools
 License  : GPL-2.0
 Requires: evtest-bin = %{version}-%{release}
@@ -51,18 +51,18 @@ man components for the evtest package.
 
 %prep
 %setup -q -n evtest-evtest-1.34
+cd %{_builddir}/evtest-evtest-1.34
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1565194847
-# -Werror is for werrorists
+export SOURCE_DATE_EPOCH=1604358537
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto "
-export FCFLAGS="$CFLAGS -fno-lto "
-export FFLAGS="$CFLAGS -fno-lto "
+export FCFLAGS="$FFLAGS -fno-lto "
+export FFLAGS="$FFLAGS -fno-lto "
 export CXXFLAGS="$CXXFLAGS -fno-lto "
 %autogen --disable-static
 make  %{?_smp_mflags}
@@ -72,13 +72,13 @@ export LANG=C.UTF-8
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-make VERBOSE=1 V=1 %{?_smp_mflags} check
+make %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1565194847
+export SOURCE_DATE_EPOCH=1604358537
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/evtest
-cp COPYING %{buildroot}/usr/share/package-licenses/evtest/COPYING
+cp %{_builddir}/evtest-evtest-1.34/COPYING %{buildroot}/usr/share/package-licenses/evtest/06877624ea5c77efe3b7e39b0f909eda6e25a4ec
 %make_install
 
 %files
@@ -90,7 +90,7 @@ cp COPYING %{buildroot}/usr/share/package-licenses/evtest/COPYING
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/evtest/COPYING
+/usr/share/package-licenses/evtest/06877624ea5c77efe3b7e39b0f909eda6e25a4ec
 
 %files man
 %defattr(0644,root,root,0755)
